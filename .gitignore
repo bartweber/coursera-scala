@@ -9,14 +9,9 @@ lib_managed/
 src_managed/
 project/boot/
 project/plugins/project/
-.history
 .cache
 .lib/
 ### Scala template
-*.class
 *.log
 
 .idea/
-build.sbt
-project/
-src/
