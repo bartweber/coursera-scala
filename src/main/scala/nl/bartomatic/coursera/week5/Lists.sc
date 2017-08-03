@@ -23,13 +23,12 @@ def reverse[T](xs: List[T]): List[T] = xs match {
 def removeAt[T](n: Int, xs: List[T]): List[T] = (xs take n) ::: (xs drop n + 1)
 
 def flatten(xs: List[Any]): List[Any] = xs match {
-  case List() => Nil
-  case y :: ys => (y match {
-    case List() => Nil
-    case List(z) => flatten(List(z))
-    case z :: zs => flatten(List(z)) ::: flatten(zs)
-    case _ => List(y)
-  }) ::: flatten(ys)
+  case List() => xs
+  case y :: ys =>
+    (y match {
+      case z :: zs => flatten(List(z)) ::: flatten(zs)
+      case _ => List(y)
+    }) ::: flatten(ys)
 }
 
 val a = List(1, 2, 3, 4, 5, 6, 7, 8, 9)
@@ -41,3 +40,6 @@ removeAt(1, a)
 removeAt(-1, a)
 removeAt(1, List(1))
 flatten(List(List(1, 1), 2, List(3, List(5, 8))))
+flatten(Nil)
+flatten(List(1))
+flatten(List(List(List(List(List(List(1), 2), 3), 4), 5), 6))
